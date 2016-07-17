@@ -4,9 +4,9 @@ module CarrierwaveIosRails
 
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
-    decent_configuration do
-      strategy DecentExposure::StrongParametersStrategy
-    end
+    #decent_configuration do
+    #  strategy DecentExposure::StrongParametersStrategy
+    #end
 
     private
 
