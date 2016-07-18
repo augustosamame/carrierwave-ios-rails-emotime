@@ -3,7 +3,7 @@
 class FileUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   def store_dir
-    "uploads/#{Rails.env}/#{model.class.to_s.underscore}/#{model.id}"
+    "profile_uploads/#{model.id}"
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
@@ -23,7 +23,7 @@ class FileUploader < CarrierWave::Uploader::Base
                           wm wmv)
 
     def default_extensions
-      VIDEO_EXTENSIONS + AUDIO_EXTENSIONS + IMAGE_EXTENSIONS
+      IMAGE_EXTENSIONS
     end
   end
 end

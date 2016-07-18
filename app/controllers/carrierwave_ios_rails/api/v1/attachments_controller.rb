@@ -25,6 +25,17 @@ module CarrierwaveIosRails
     def create
       if attachment.save
         response.location = api_v1_attachment_url attachment
+
+        #@user = User.find(current_user.id)
+        @user = User.find(params[:extradata][:user_id])
+        #@user.update(image: attachment.file.url)
+        @user.update(image: attachment.file.url[/[^\?]+/])
+        #if @user.update(user_params)
+        #  render json: @user
+        #else
+        #  render json: @user.errors, status: :unprocessable_entity
+        #end
+
         respond_with :api, :v1, attachment, status: :created
       else
         render json: { errors: attachment.errors }, status: :unprocessable_entity
@@ -43,7 +54,7 @@ module CarrierwaveIosRails
     private
 
     def attachment_params
-      params.require(:attachment).permit(:file)
+      params.require(:attachment).permit(:file, :user_id)
     end
   end
 end
