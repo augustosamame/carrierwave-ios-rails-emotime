@@ -1,6 +1,14 @@
 # encoding: utf-8
 
 class FileUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
+
+  process resize_to_fit: [200, 200]
+
+  version :thumb do
+    process resize_to_fill: [40,40]
+  end
+
   # Override the directory where uploaded files will be stored.
   def store_dir
     "profile_uploads/#{model.id}"
